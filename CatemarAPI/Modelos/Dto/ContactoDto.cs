@@ -1,16 +1,18 @@
-﻿namespace CatemarAPI.Modelos.Dto
+﻿using System.Net.NetworkInformation;
+
+namespace CatemarAPI.Modelos.Dto
 {
     public class ContactoDto
     {
-        public class Next
+        public List<Result> results { get; set; } = null!;
+        
+        public class Result
         {
-            public string after { get; set; } = null!;
-            public string link { get; set; } = null!;
-        }
-
-        public class Paging
-        {
-            public Next next { get; set; } = null!;
+                public string id { get; set; } = null!;
+                public Properties properties { get; set; } = null!;
+                public DateTime createdAt { get; set; }
+                public DateTime updatedAt { get; set; }
+                public bool archived { get; set; }
         }
 
         public class Properties
@@ -22,21 +24,5 @@
             public DateTime lastmodifieddate { get; set; }
             public string lastname { get; set; } = null!;
         }
-
-        public class Result
-        {
-            public string id { get; set; } = null!;
-            public Properties properties { get; set; } = null!;
-            public DateTime createdAt { get; set; }
-            public DateTime updatedAt { get; set; }
-            public bool archived { get; set; }
-        }
-
-        public class Root
-        {
-            public List<Result> results { get; set; } = new List<Result>();
-            public Paging paging { get; set; } = null!;
-        }
-
     }
 }
